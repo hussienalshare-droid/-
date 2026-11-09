@@ -23,10 +23,9 @@ rooms = [
     ("مطبخ تحضيري", R(9.2, 6.6, 12.6, 9.0), "#e9efe3", "room"),
     ("صالة", R(0, 4.6, 5.4, 12.2), "#f6efe2", "room"),
     ("درج", R(5.4, 6.6, 8.4, 9.0), "#e8dcc8", "stair"),
-    ("حديقة داخلية", R(5.4, 9.0, 8.4, 11.2), "#cfe3c2", "garden"),
     ("مطبخ وطعام", R(8.4, 9.0, 12.6, 15.0), "#e9efe3", "room"),
     ("مجلس (استقبال)", R(0, 12.2, 5.4, 18.0), "#f6efe2", "room"),
-    ("مدخل", [(5.4, 11.2), (8.4, 11.2), (8.4, 16.4), (6.9, 16.4), (6.9, 18.0), (5.4, 18.0)],
+    ("مدخل", [(5.4, 9.0), (8.4, 9.0), (8.4, 16.4), (6.9, 16.4), (6.9, 18.0), (5.4, 18.0)],
      "#f7f5f0", "circ"),
     ("حمام ضيوف", R(6.9, 16.4, 8.4, 18.0), "#dbe9f2", "wet"),
     ("موقف سيارة", R(8.4, 15.0, 12.6, 23.0), "#e4e4e4", "out"),
@@ -90,11 +89,6 @@ for i in range(1, 12):
 out.append(f'<line x1="{X(x0)}" y1="{Y(mid)}" x2="{X(x1-0.3)}" y2="{Y(mid)}" stroke="#7a6545" stroke-width="2"/>')
 out.append(f'<path d="M{X(x1-0.5)},{Y(y0+0.6)} L{X(x0+0.4)},{Y(y0+0.6)} L{X(x0+0.4)},{Y(y1-0.6)} L{X(x1-0.5)},{Y(y1-0.6)}" '
            f'fill="none" stroke="#7a6545" stroke-width="1.2" marker-end="url(#arr)"/>')
-# حديقة داخلية: جلسة دائرية + نوافير
-out.append(f'<circle cx="{X(6.9)}" cy="{Y(10.1)}" r="{0.75*S}" fill="#b9b2a6" stroke="#8d8579"/>')
-out.append(f'<circle cx="{X(6.9)}" cy="{Y(10.1)}" r="{0.3*S}" fill="#8b6f4e"/>')
-for fx in (5.85, 7.95):
-    out.append(f'<rect x="{X(fx-0.3)}" y="{Y(9.8)}" width="{0.6*S}" height="{0.6*S}" fill="#7fb6dd" stroke="#4d8ab5"/>')
 # حديقة أمامية: نافورة + جلسة
 out.append(f'<rect x="{X(1.0)}" y="{Y(19.4)}" width="{2.0*S}" height="{2.0*S}" fill="#7fb6dd" stroke="#4d8ab5" rx="4"/>')
 out.append(f'<circle cx="{X(2.0)}" cy="{Y(20.4)}" r="{0.45*S}" fill="none" stroke="#fff" stroke-width="2"/>')
@@ -125,8 +119,6 @@ out.append(f'<rect x="{X(1.6)}" y="{Y(7.2)}" width="{2.2*S}" height="{2.6*S}" fi
 for name, poly, col, kind in rooms:
     if kind == "out": continue
     out.append(f'<polygon points="{pts(poly)}" fill="none" stroke="#2b2b2b" stroke-width="{INT*S:.1f}" stroke-linejoin="miter"/>')
-# جدار زجاجي حول الحديقة الداخلية
-out.append(f'<rect x="{X(5.4)}" y="{Y(9.0)}" width="{3.0*S}" height="{2.2*S}" fill="none" stroke="#5aa0d6" stroke-width="4"/>')
 # الجدار الخارجي للمبنى
 outline = [(0, 0), (12.6, 0), (12.6, 15.0), (8.4, 15.0), (8.4, 18.0), (0, 18.0)]
 out.append(f'<polygon points="{pts(outline)}" fill="none" stroke="#111" stroke-width="{EXT*S:.1f}" stroke-linejoin="miter"/>')
@@ -161,7 +153,6 @@ for name, poly, col, kind in rooms:
     if name == "موزع": cx, cy = 7.3, 5.6
     if name == "مدخل": cx, cy = 6.9, 14.6
     if name == "صالة": cy = 10.3
-    if name == "حديقة داخلية": cy = 9.3
     if name == "مطبخ وطعام": cx, cy = 10.5, 10.6
     if name == "موقف سيارة": cy = 21.6
     if name == "حديقة أمامية": cx, cy = 2.0, 22.0
