@@ -1,4 +1,4 @@
-"""مخطط الطابق الأرضي — قطعة 12.60 × 23.00 م، سمك الجدار 20 سم، مسطح البناء 200 م².
+"""مخطط الطابق الأرضي — قطعة 12.60 × 23.00 م، سمك الجدار 20 سم.
 
 الإحداثيات بالمتر على محاور الجدران (منتصف الجدار). الجدار الخارجي محوره على 0.10 من حد القطعة.
 المقاسات المكتوبة داخل الغرف صافية (بين وجهي الجدران).
@@ -15,16 +15,16 @@ def X(v): return M + v * S
 def Y(v): return M + v * S
 R = lambda x0, y0, x1, y1: [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
 
-D2, D1 = 15.4, 18.0        # الحد الأمامي للبناء: يمين (الموقف) / يسار (الحديقة)
+D2, D1 = 15.4, 17.1        # الحد الأمامي للبناء: يمين (المطبخ) / يسار (الاستقبال)
 E2, E1 = D2 - 0.1, D1 - 0.1
 
-# كيرف المدخل: ربع دائرة نصف قطرها 2.00 م على محور الجدار
-CR = 2.0
-CX, CY = 6.1, E1 - CR
+# كيرف المدخل: ربع دائرة نصف قطرها 1.20 م على محور الجدار، من ركن المطبخ إلى واجهة الاستقبال
+CR = 1.2
+CX, CY = 6.5 - CR, E1 - CR
 def arc(cx, cy, rad, t0, t1, n=24):
     return [(cx + rad * math.cos(math.radians(t0 + (t1 - t0) * i / n)),
              cy + rad * math.sin(math.radians(t0 + (t1 - t0) * i / n))) for i in range(n + 1)]
-entrance = [(4.5, 11.3), (6.5, 11.3), (6.5, E2), (8.1, E2)] + arc(CX, CY, CR, 0, 90) + [(4.5, E1)]
+entrance = [(4.5, 11.3), (6.5, 11.3)] + arc(CX, CY, CR, 0, 90) + [(4.5, E1)]
 
 # (الاسم, مضلع على المحاور, اللون, النوع)
 rooms = [
@@ -35,41 +35,49 @@ rooms = [
     ("غرفة نوم 2", R(7.3, 1.7, 12.5, 5.9), "#f3ead9", "room"),
     ("درج", R(0.1, 4.5, 3.5, 7.1), "#e8dcc8", "stair"),
     ("موزع", [(3.5, 4.5), (7.3, 4.5), (7.3, 5.9), (12.5, 5.9), (12.5, 7.1), (3.5, 7.1)], "#f7f5f0", "circ"),
-    ("صالة", R(0.1, 7.1, 7.5, 11.3), "#f6efe2", "room"),
-    ("حمام", R(7.5, 7.1, 10.1, 9.1), "#dbe9f2", "wet"),
-    ("WC", R(10.1, 7.1, 12.5, 9.1), "#dbe9f2", "wet"),
-    ("حديقة داخلية", R(7.5, 9.1, 12.5, 11.3), "#cfe3c2", "void"),
+    ("صالة", R(0.1, 7.1, 7.0, 11.3), "#f6efe2", "room"),
+    ("حديقة داخلية", R(7.0, 7.1, 10.0, 11.3), "#cfe3c2", "void"),
+    ("لوندري", [(10.0, 7.1), (12.5, 7.1), (12.5, 8.0), (11.1, 8.0), (11.1, 9.4), (10.0, 9.4)], "#e6e9f2", "wet"),
+    ("WC", R(11.1, 8.0, 12.5, 9.4), "#dbe9f2", "wet"),
+    ("حمام", R(10.0, 9.4, 12.5, 11.3), "#dbe9f2", "wet"),
     ("استقبال", R(0.1, 11.3, 4.5, E1), "#f6efe2", "room"),
     ("مدخل", entrance, "#f7f5f0", "circ"),
-    ("مطبخ", R(6.5, 11.3, 9.9, E2), "#e9efe3", "room"),
-    ("مطبخ حار", R(9.9, 11.3, 12.5, E2), "#e3ecd9", "room"),
+    ("مطبخ", R(6.5, 11.3, 10.7, E2), "#e9efe3", "room"),
+    ("مطبخ حار", R(10.7, 11.3, 12.5, E2), "#e3ecd9", "room"),
+    ("حمام خارجي", R(0.1, 21.5, 1.5, 22.9), "#dbe9f2", "wet"),
 ]
+OB = R(0, 21.4, 1.6, 23.0)   # الحد الخارجي للحمام الخارجي
+garden = ([(0, D1)] + arc(CX, CY, CR + T / 2, 90, 0) +
+          [(6.6, D2), (8.2, D2), (8.2, 23.0), (1.6, 23.0), (1.6, 21.4), (0, 21.4)])
 outside = [
     ("كراج", R(8.2, D2, 12.6, 23.0), "#e4e4e4"),
-    ("حديقة", R(0, D1, 8.2, 23.0), "#d6e8c8"),
+    ("حديقة", garden, "#d6e8c8"),
 ]
+display = {"مطبخ حار": "حار", "حمام خارجي": "حمام"}
 
-# الأبواب: (h/v, محور الجدار, من, إلى, جهة الفتح)
+# الأبواب: (h/v, محور الجدار, من, إلى, جهة الفتح[, "b" = المفصلة عند النهاية])
 doors = [
     ("h", 4.5, 3.75, 4.65, -1),    # غرفة نوم 1 ← موزع
     ("v", 7.3, 4.75, 5.65, 1),     # غرفة نوم 2 ← موزع
     ("h", 1.7, 7.6, 8.5, 1),       # غرفة ملابس
     ("v", 7.3, 0.5, 1.3, -1),      # حمام ← غرفة ملابس
-    ("h", 7.1, 7.7, 8.5, 1),       # حمام ← موزع
-    ("h", 7.1, 10.3, 11.1, 1),     # WC ← موزع
-    ("v", 4.5, 15.6, 16.8, -1),    # استقبال ← مدخل
+    ("h", 7.1, 10.2, 11.0, 1),     # لوندري ← موزع
+    ("v", 11.1, 8.35, 9.05, 1),    # WC ← لوندري
+    ("h", 9.4, 10.2, 10.9, 1),     # حمام ← لوندري
+    ("v", 4.5, 15.4, 16.6, -1),    # استقبال ← مدخل
     ("v", 6.5, 12.0, 12.9, 1),     # مطبخ ← مدخل
-    ("h", E1, 4.75, 5.35, -1), ("h", E1, 5.35, 5.95, -1, "b"),  # الباب الرئيسي (درفتان)
-    ("h", E2, 10.8, 11.7, 1),      # مطبخ حار ← كراج
+    ("h", E2, 10.9, 11.7, 1),      # مطبخ حار ← كراج
+    ("v", 1.5, 21.8, 22.5, 1),     # حمام خارجي ← حديقة
 ]
 # فتحات بلا أبواب
-openings = [("v", 3.5, 4.6, 7.0), ("h", 7.1, 4.3, 6.7), ("h", 11.3, 4.6, 6.4), ("v", 9.9, 12.4, 13.8)]
+openings = [("v", 3.5, 4.6, 7.0), ("h", 7.1, 4.3, 6.7), ("h", 11.3, 4.6, 6.4), ("v", 10.7, 12.4, 13.8)]
 # الشبابيك
 windows = [
-    ("v", 4.9, 2.5, 4.1), ("v", 7.3, 2.5, 4.1), ("h", 2.1, 5.5, 6.7), ("h", 4.5, 5.3, 6.9),  # على المنور
-    ("h", 9.1, 8.3, 9.3), ("h", 9.1, 10.8, 11.8),                                            # حمامات ← حديقة داخلية
-    ("v", 7.5, 9.4, 11.0), ("h", 11.3, 7.9, 9.5), ("h", 11.3, 10.5, 12.0),                   # صالة ومطابخ ← حديقة داخلية
-    ("h", E1, 1.0, 3.4),                                                                     # استقبال ← حديقة أمامية
+    ("v", 4.9, 2.5, 4.1), ("v", 7.3, 2.5, 4.1), ("h", 2.1, 5.5, 6.7), ("h", 4.5, 5.3, 6.9),   # على المنور
+    ("v", 7.0, 7.6, 10.8), ("h", 7.1, 7.6, 9.4), ("h", 11.3, 7.6, 9.4),                       # صالة وموزع ومطبخ ← حديقة داخلية
+    ("v", 10.0, 7.5, 8.5), ("v", 10.0, 10.1, 10.9),                                           # لوندري وحمام ← حديقة داخلية
+    ("h", E2, 11.85, 12.35),                                                                  # مطبخ حار ← كراج
+    ("h", E1, 1.0, 3.4), ("h", E1, 4.72, 5.15),                                               # استقبال ومدخل ← حديقة أمامية
 ]
 
 def area(poly):
@@ -108,12 +116,13 @@ o.append(f'<rect width="{w_px}" height="{h_px}" fill="#fff"/>')
 
 for name, poly, col in outside:
     o.append(f'<polygon points="{pts(poly)}" fill="{col}"/>')
-o.append(f'<polygon points="{pts(R(CX, D2, 8.2, D1))}" fill="#d6e8c8"/>')   # ركن الحديقة خارج الكيرف
 for name, poly, col, kind in rooms:
     o.append(f'<polygon points="{pts(poly)}" fill="{col}"/>')
 
 def rect(x, y, w, h, fill, stroke="#8a7f70", rx=3, extra=""):
     o.append(f'<rect x="{X(x):.1f}" y="{Y(y):.1f}" width="{w*S:.1f}" height="{h*S:.1f}" fill="{fill}" stroke="{stroke}" rx="{rx}" {extra}/>')
+def plant(cx, cy, rad=0.3):
+    o.append(f'<circle cx="{X(cx)}" cy="{Y(cy)}" r="{rad*S}" fill="#7fb069" stroke="#4f7d3f"/>')
 
 # --- أثاث رمزي ---
 def bed(x, y, w, h, head="left"):
@@ -127,24 +136,24 @@ rect(11.9, 6.2, 0.4, 0.6, "#fff", "#5b8fb5")    # مغسلة الممر
 # صالة: كنب + طاولة طعام
 rect(0.4, 7.5, 0.8, 3.4, "#e2d6c4", "#a8977d"); rect(1.3, 7.4, 2.6, 0.8, "#e2d6c4", "#a8977d")
 rect(1.6, 8.6, 2.2, 1.6, "none", "#c4b49a", 0, 'stroke-dasharray="4 3"')
-rect(5.2, 8.6, 1.0, 1.6, "#b08a5f", "#6e5333")
+rect(5.0, 8.6, 1.0, 1.6, "#b08a5f", "#6e5333")
 # استقبال: كنب على شكل U
-rect(0.4, 11.7, 0.8, 5.6, "#e2d6c4", "#a8977d"); rect(3.4, 11.7, 0.8, 3.6, "#e2d6c4", "#a8977d")
+rect(0.4, 11.7, 0.8, 4.9, "#e2d6c4", "#a8977d"); rect(3.4, 11.7, 0.8, 3.5, "#e2d6c4", "#a8977d")
 rect(1.3, 11.6, 2.0, 0.8, "#e2d6c4", "#a8977d")
-rect(1.4, 13.0, 1.8, 3.0, "none", "#c4b49a", 0, 'stroke-dasharray="4 3"')
+rect(1.4, 13.0, 1.8, 2.6, "none", "#c4b49a", 0, 'stroke-dasharray="4 3"')
 # مطبخ: كاونتر
-rect(6.7, E2 - 0.8, 3.0, 0.6, "#d0d0d0", "#888", 0); rect(9.1, 11.5, 0.6, 0.8, "#d0d0d0", "#888", 0)
+rect(6.7, E2 - 0.8, 3.8, 0.6, "#d0d0d0", "#888", 0); rect(9.9, 11.5, 0.6, 0.8, "#d0d0d0", "#888", 0)
 rect(11.7, 11.5, 0.6, 3.6, "#d0d0d0", "#888", 0)
-# حديقة داخلية + منور: نباتات
-for cx, cy in [(8.2, 9.75), (11.8, 9.75), (8.2, 10.7), (11.8, 10.7), (5.4, 2.7), (6.8, 2.7), (5.4, 3.9), (6.8, 3.9)]:
-    o.append(f'<circle cx="{X(cx)}" cy="{Y(cy)}" r="{0.3*S}" fill="#7fb069" stroke="#4f7d3f"/>')
-# حديقة أمامية
-for cx, cy in [(0.8, 18.8), (7.3, 18.8), (0.8, 22.2), (7.3, 22.2)]:
-    o.append(f'<circle cx="{X(cx)}" cy="{Y(cy)}" r="{0.45*S}" fill="#7fb069" stroke="#4f7d3f"/>')
-for i in range(4):
-    rect(4.85, 18.3 + i * 1.0, 1.0, 0.7, "#eae6de", "#bbb", 0)
-for cx, cy, rad in [(7.8, 17.6, 0.25), (7.2, 17.0, 0.22)]:      # نبات خارج الكيرف وداخله
-    o.append(f'<circle cx="{X(cx)}" cy="{Y(cy)}" r="{rad*S}" fill="#7fb069" stroke="#4f7d3f"/>')
+# لوندري: غسالة
+rect(11.75, 7.25, 0.6, 0.6, "#fff", "#5b8fb5")
+o.append(f'<circle cx="{X(12.05)}" cy="{Y(7.55)}" r="{0.2*S}" fill="none" stroke="#5b8fb5"/>')
+# نباتات: حديقة داخلية + منور + حديقة أمامية
+for cx, cy in [(7.7, 7.8), (9.3, 7.8), (7.7, 10.6), (9.3, 10.6), (5.4, 2.7), (6.8, 2.7), (5.4, 3.9), (6.8, 3.9)]:
+    plant(cx, cy)
+for cx, cy in [(0.9, 18.0), (7.4, 18.9), (3.0, 22.1), (7.4, 22.1)]:
+    plant(cx, cy, 0.45)
+for i in range(5):                                # ممر من بوابة المشاة إلى باب الكيرف
+    rect(5.2 + 0.2 * i, 21.35 - 1.0 * i, 1.0, 0.7, "#eae6de", "#bbb", 0)
 # سيارة
 rect(9.45, 16.6, 1.9, 4.7, "#cfd4da", "#7d8790", 14); rect(9.7, 17.8, 1.4, 1.0, "#9aa5b0", "none", 6)
 rect(9.7, 19.6, 1.4, 0.8, "#9aa5b0", "none", 6)
@@ -197,28 +206,37 @@ for orient, c, a, b in windows:
     for k in (-1, 1):
         o.append(f'<line x1="{x1+k*dx}" y1="{y1+k*dy}" x2="{x2+k*dx}" y2="{y2+k*dy}" stroke="#3b82c4" stroke-width="1.5"/>')
 
-cw = lambda rad: " ".join(f"{X(x):.1f},{Y(y):.1f}" for x, y in arc(CX, CY, rad, 20, 70, 16))
-o.append(f'<polyline points="{cw(CR)}" fill="none" stroke="#fff" stroke-width="{gap-1}"/>')
-for k in (-1, 1):
-    o.append(f'<polyline points="{cw(CR + k * 2.5 / S)}" fill="none" stroke="#3b82c4" stroke-width="1.5"/>')
-o.append(f'<text x="{X(7.15)}" y="{Y(16.0)}" text-anchor="middle" font-size="9" fill="#444">جدار كيرف</text>')
-o.append(f'<text x="{X(7.15)}" y="{Y(16.3)}" text-anchor="middle" font-size="9" fill="#444">نق 2.00 م</text>')
+# الباب الرئيسي على الكيرف: وتر 1.00 م في منتصف القوس، يفتح للداخل والمفصلة جهة المطبخ
+DW = 1.0
+half = math.degrees(math.asin(DW / 2 / CR))
+ta, tb = 45 - half, 45 + half
+pa = (CX + CR * math.cos(math.radians(ta)), CY + CR * math.sin(math.radians(ta)))
+pb = (CX + CR * math.cos(math.radians(tb)), CY + CR * math.sin(math.radians(tb)))
+leaf = (pa[0] - DW * math.cos(math.radians(45)), pa[1] - DW * math.sin(math.radians(45)))
+o.append(f'<polyline points="{pts(arc(CX, CY, CR, ta, tb, 12))}" fill="none" stroke="#fff" stroke-width="{gap}"/>')
+o.append(f'<line x1="{X(pa[0]):.1f}" y1="{Y(pa[1]):.1f}" x2="{X(leaf[0]):.1f}" y2="{Y(leaf[1]):.1f}" stroke="#333" stroke-width="1.5"/>')
+a0 = math.atan2(leaf[1] - pa[1], leaf[0] - pa[0]); a1 = math.atan2(pb[1] - pa[1], pb[0] - pa[0])
+delta = (a1 - a0 + math.pi) % (2 * math.pi) - math.pi
+o.append(f'<path d="M{X(leaf[0]):.1f},{Y(leaf[1]):.1f} A{DW*S},{DW*S} 0 0 {1 if delta > 0 else 0} {X(pb[0]):.1f},{Y(pb[1]):.1f}" '
+         f'fill="none" stroke="#777" stroke-dasharray="3 2"/>')
+o.append(f'<text x="{X(7.4)}" y="{Y(16.2)}" text-anchor="middle" font-size="9" fill="#444">مدخل كيرف</text>')
+o.append(f'<text x="{X(7.4)}" y="{Y(16.5)}" text-anchor="middle" font-size="9" fill="#444">نق 1.20 م</text>')
 
 # --- التسميات ---
 label_pos = {"موزع": (5.6, 5.9), "غرفة نوم 1": (2.5, 3.35), "غرفة نوم 2": (9.0, 3.4), "صالة": (2.8, 9.2),
-             "استقبال": (2.3, 14.3), "مدخل": (5.5, 13.6), "درج": (2.2, 5.9), "غرفة ملابس": (8.5, 0.75),
-             "مطبخ": (8.2, 12.9), "مطبخ حار": (10.8, 13.0), "كراج": (10.4, 21.8), "حديقة": (2.9, 20.3),
-             "منور": (6.1, 3.2), "حديقة داخلية": (10.0, 10.1),
-             ("حمام", 7.5): (9.2, 8.1), ("WC", 10.1): (11.7, 8.1)}
-def label(name, poly, show=True, clear=True, key=None):
+             "استقبال": (2.3, 14.0), "مدخل": (5.5, 13.6), "درج": (2.2, 5.9), "غرفة ملابس": (8.5, 0.75),
+             "مطبخ": (8.6, 12.9), "مطبخ حار": (11.25, 13.2), "كراج": (10.4, 21.8), "حديقة": (3.4, 19.9),
+             "منور": (6.1, 3.2), "حديقة داخلية": (8.5, 9.2), "لوندري": (10.55, 8.3), "WC": (11.8, 8.6),
+             ("حمام", 10.0): (11.25, 10.3), "حمام خارجي": (0.8, 22.05)}
+def label(name, poly, show=True, clear=True):
     x0, y0, x1, y1 = bbox(poly)
     cx, cy = label_pos.get((name, x0), label_pos.get(name, ((x0 + x1) / 2, (y0 + y1) / 2 - 0.15)))
     bw, bh = (x1 - x0 - T, y1 - y0 - T) if clear else (x1 - x0, y1 - y0)
     fs = 10 if min(bw, bh) < 2.5 else 14
-    if name == "موزع": fs = 14
+    if name in ("موزع", "مدخل"): fs = 14
     if not show:   # الدرج: خلفية بيضاء خلف الاسم
         o.append(f'<rect x="{X(cx)-22}" y="{Y(cy)-15}" width="44" height="20" rx="4" fill="#fff" opacity="0.9"/>')
-    o.append(f'<text x="{X(cx)}" y="{Y(cy)}" text-anchor="middle" font-size="{fs}" font-weight="bold" fill="#222">{name}</text>')
+    o.append(f'<text x="{X(cx)}" y="{Y(cy)}" text-anchor="middle" font-size="{fs}" font-weight="bold" fill="#222">{display.get(name, name)}</text>')
     if not show: return
     a = clear_area(poly) if clear else area(poly)
     if len(poly) == 4:
@@ -246,7 +264,7 @@ for a, b in chain([0, 4.9, 7.3, 12.6]): hdim(M - 22, a, b, f"{b-a:.2f}")
 for a, b in chain([0, 4.5, 6.5, 8.2, 12.6]): hdim(Y(L) + 30, a, b, f"{b-a:.2f}")
 vdim(M - 50, 0, L, "23.00 m", "#c0392b")
 for a, b in chain([0, 4.5, 7.1, 11.3, D1, 23.0]): vdim(M - 22, a, b, f"{b-a:.2f}")
-for a, b in chain([0, 5.9, 7.1, 9.1, 11.3, D2, 23.0]): vdim(X(W) + 34, a, b, f"{b-a:.2f}")
+for a, b in chain([0, 5.9, 7.1, 9.4, 11.3, D2, 23.0]): vdim(X(W) + 34, a, b, f"{b-a:.2f}")
 
 o.append(f'<text x="{w_px/2}" y="{h_px-14}" text-anchor="middle" font-size="16" font-weight="bold" fill="#444">⟵ الشارع ⟶</text>')
 o.append(f'<text x="{X(11.3)}" y="{Y(6.65)}" text-anchor="middle" font-size="9" fill="#444">مغسلة</text>')
@@ -256,10 +274,11 @@ o.append('</svg>')
 svg = "\n".join(o)
 
 # --- الحسابات ---
-outer = [(0, 0), (W, 0), (W, D2), (8.2, D2)] + arc(CX, CY, CR + T / 2, 0, 90) + [(0, D1)]
+outer = [(0, 0), (W, 0), (W, D2), (6.6, D2)] + arc(CX, CY, CR + T / 2, 0, 90) + [(0, D1)]
 footprint = area(outer)
 voids = sum(clear_area(p) for n, p, c, k in rooms if k == "void")
-built = footprint - voids
+built_main = footprint - voids
+built = built_main + area(OB)
 net = sum(clear_area(p) for n, p, c, k in rooms if k != "void")
 
 here = os.path.dirname(os.path.abspath(__file__))
@@ -290,8 +309,12 @@ tfoot td{{font-weight:bold;background:#f7f3ec}}
 <tbody>{rows}</tbody>
 <tfoot><tr><td colspan="2">مساحة الأرض</td><td dir='ltr'>{W*L:.2f}</td></tr>
 <tr><td colspan="2">المنور + الحديقة الداخلية (مكشوفة)</td><td dir='ltr'>{voids:.2f}</td></tr>
-<tr><td colspan="2">مسطح البناء (مع الجدران)</td><td dir='ltr'>{built:.2f}</td></tr>
+<tr><td colspan="2">مسطح البناء الرئيسي (مع الجدران)</td><td dir='ltr'>{built_main:.2f}</td></tr>
+<tr><td colspan="2">الحمام الخارجي (مع الجدران)</td><td dir='ltr'>{area(OB):.2f}</td></tr>
+<tr><td colspan="2">مسطح البناء الكلي</td><td dir='ltr'>{built:.2f}</td></tr>
 <tr><td colspan="2">مجموع المساحات الصافية للغرف</td><td dir='ltr'>{net:.2f}</td></tr></tfoot></table></div>
 </body></html>"""
 open(os.path.join(here, "index.html"), "w", encoding="utf-8").write(html)
-print(f"plot={W*L:.2f} footprint={footprint:.2f} voids={voids:.2f} built={built:.2f} net={net:.2f}")
+print(f"plot={W*L:.2f} footprint={footprint:.2f} voids={voids:.2f} built_main={built_main:.2f} built={built:.2f} net={net:.2f}")
+for n, p, c, k in rooms: print(f"  {n}: {dims(p)}  {clear_area(p):.2f}")
+print(f"  garden={area(garden):.1f}")
