@@ -12,18 +12,19 @@ def Y(v): return M + v * S
 # (الاسم, المضلع بالأمتار, اللون, نوع)
 R = lambda x0, y0, x1, y1: [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
 rooms = [
-    ("غرفة نوم 1", R(0, 0, 4.6, 4.6), "#f3ead9", "room"),
-    ("مصلى", R(4.6, 0, 6.2, 2.8), "#efe3cc", "room"),
-    ("غرفة نوم رئيسية", R(6.2, 0, 10.2, 4.6), "#f3ead9", "room"),
+    ("غرفة نوم 1", R(0, 0, 4.4, 4.6), "#f3ead9", "room"),
+    ("منور 1", R(4.4, 0, 6.6, 3.25), "#dfe7ec", "well"),
+    ("غرفة نوم رئيسية", R(6.6, 0, 10.2, 4.6), "#f3ead9", "room"),
     ("دريسنج", R(10.2, 0, 12.6, 2.4), "#ece4d6", "room"),
     ("حمام", R(10.2, 2.4, 12.6, 4.6), "#dbe9f2", "wet"),
-    ("موزع", [(4.6, 2.8), (6.2, 2.8), (6.2, 4.6), (9.2, 4.6), (9.2, 9.0), (8.4, 9.0),
-              (8.4, 6.6), (5.4, 6.6), (5.4, 4.6), (4.6, 4.6)], "#f7f5f0", "circ"),
-    ("حمام", R(9.2, 4.6, 12.6, 6.6), "#dbe9f2", "wet"),
-    ("مطبخ تحضيري", R(9.2, 6.6, 12.6, 9.0), "#e9efe3", "room"),
+    ("موزع", [(4.4, 3.25), (6.6, 3.25), (6.6, 4.6), (8.4, 4.6), (8.4, 9.0), (7.4, 9.0),
+              (7.4, 6.6), (5.4, 6.6), (5.4, 4.6), (4.4, 4.6)], "#f7f5f0", "circ"),
+    ("مصلى", R(8.4, 4.6, 10.4, 6.6), "#efe3cc", "room"),
+    ("حمام", R(8.4, 6.6, 10.4, 9.0), "#dbe9f2", "wet"),
+    ("منور 2", R(10.4, 4.6, 12.6, 7.8), "#dfe7ec", "well"),
     ("صالة", [(0, 4.6), (5.4, 4.6), (5.4, 9.0), (8.4, 9.0), (8.4, 11.2), (5.4, 11.2), (5.4, 12.2), (0, 12.2)], "#f6efe2", "room"),
-    ("درج", R(5.4, 6.6, 8.4, 9.0), "#e8dcc8", "stair"),
-    ("مطبخ وطعام", R(8.4, 9.0, 12.6, 15.0), "#e9efe3", "room"),
+    ("درج", R(5.4, 6.6, 7.4, 9.0), "#e8dcc8", "stair"),
+    ("مطبخ وطعام", [(8.4, 9.0), (10.4, 9.0), (10.4, 7.8), (12.6, 7.8), (12.6, 15.0), (8.4, 15.0)], "#e9efe3", "room"),
     ("مجلس (استقبال)", R(0, 12.2, 5.4, 18.0), "#f6efe2", "room"),
     ("مدخل", [(5.4, 11.2), (8.4, 11.2), (8.4, 16.4), (6.9, 16.4), (6.9, 18.0), (5.4, 18.0)],
      "#f7f5f0", "circ"),
@@ -34,14 +35,13 @@ rooms = [
 
 # الأبواب: (اتجاه الجدار h/v, الإحداثي الثابت, بداية, نهاية, جهة الفتح +1/-1)
 doors = [
-    ("v", 4.6, 3.5, 4.4, -1),     # غرفة نوم 1
-    ("h", 2.8, 5.0, 5.8, -1),     # مصلى
+    ("v", 4.4, 3.5, 4.4, -1),     # غرفة نوم 1
     ("h", 4.6, 7.0, 7.9, -1),     # غرفة رئيسية
     ("v", 10.2, 0.8, 1.6, 1),     # دريسنج
     ("h", 2.4, 10.8, 11.5, 1),    # حمام رئيسي
-    ("v", 9.2, 5.3, 6.1, 1),      # حمام 2
-    ("v", 9.2, 7.6, 8.5, 1),      # مطبخ تحضيري
-    ("h", 9.0, 8.4, 9.2, 1),      # موزع ← مطبخ
+    ("v", 8.4, 4.75, 5.45, 1),    # مصلى
+    ("v", 8.4, 8.15, 8.85, 1),    # حمام 2
+    ("v", 8.4, 9.7, 10.6, 1),     # صالة ← مطبخ
     ("h", 11.2, 6.2, 7.4, 1),     # صالة ← مدخل
     ("v", 5.4, 13.6, 14.8, -1),   # مجلس ← مدخل
     ("v", 8.4, 12.0, 12.9, 1),    # مطبخ ← مدخل
@@ -50,7 +50,10 @@ doors = [
     ("h", 15.0, 10.6, 11.5, 1),   # مطبخ ← موقف
 ]
 # فتحات بدون أبواب (ممرات مفتوحة)
-openings = [("h", 4.6, 4.6, 5.4), ("h", 6.6, 5.5, 8.3)]
+openings = [("h", 4.6, 4.45, 5.35), ("h", 6.6, 5.45, 7.35), ("h", 9.0, 7.45, 8.35)]
+# الشبابيك المطلة على المناور
+windows = [("v", 4.4, 0.7, 2.5), ("v", 6.6, 0.7, 2.5), ("h", 4.6, 10.9, 12.1),
+           ("v", 10.4, 5.1, 6.1), ("v", 10.4, 6.8, 7.6), ("h", 7.8, 10.9, 12.2)]
 
 def area(poly):
     a = 0
@@ -79,7 +82,7 @@ for name, poly, col, kind in rooms:
     out.append(f'<polygon points="{pts(poly)}" fill="{col}"/>')
 
 # تفاصيل: درج
-x0, y0, x1, y1 = 5.4, 6.6, 8.4, 9.0
+x0, y0, x1, y1 = 5.4, 6.6, 7.4, 9.0
 mid = (y0 + y1) / 2
 for i in range(1, 12):
     xx = x0 + 0.25 * i
@@ -115,6 +118,13 @@ for (x, y, w, h) in [(0.4, 12.6, 4.6, 0.7), (0.4, 16.9, 4.6, 0.7), (0.4, 13.5, 0
 out.append(f'<rect x="{X(1.8)}" y="{Y(14.0)}" width="{2.4*S}" height="{2.2*S}" fill="none" stroke="#c4b49a" stroke-dasharray="4 3"/>')
 out.append(f'<rect x="{X(1.6)}" y="{Y(7.2)}" width="{2.2*S}" height="{2.6*S}" fill="none" stroke="#c4b49a" stroke-dasharray="4 3"/>')
 
+# المناور: تهشير
+for name, poly, col, kind in rooms:
+    if kind != "well": continue
+    xs = [p[0] for p in poly]; ys = [p[1] for p in poly]
+    out.append(f'<line x1="{X(min(xs))}" y1="{Y(min(ys))}" x2="{X(max(xs))}" y2="{Y(max(ys))}" stroke="#9fb3c0" stroke-width="1"/>')
+    out.append(f'<line x1="{X(max(xs))}" y1="{Y(min(ys))}" x2="{X(min(xs))}" y2="{Y(max(ys))}" stroke="#9fb3c0" stroke-width="1"/>')
+
 # الجدران
 for name, poly, col, kind in rooms:
     if kind == "out": continue
@@ -147,6 +157,15 @@ for o, c, a, b in openings:
     if o == "h":
         out.append(f'<line x1="{X(a)}" y1="{Y(c)}" x2="{X(b)}" y2="{Y(c)}" stroke="#f7f5f0" stroke-width="{EXT*S+2:.1f}"/>')
 
+for o, c, a, b in windows:
+    if o == "h":
+        x1_, y1_, x2_, y2_ = X(a), Y(c), X(b), Y(c); dx, dy = 0, 2.5
+    else:
+        x1_, y1_, x2_, y2_ = X(c), Y(a), X(c), Y(b); dx, dy = 2.5, 0
+    out.append(f'<line x1="{x1_}" y1="{y1_}" x2="{x2_}" y2="{y2_}" stroke="#fff" stroke-width="{INT*S+1:.1f}"/>')
+    for k in (-1, 1):
+        out.append(f'<line x1="{x1_+k*dx}" y1="{y1_+k*dy}" x2="{x2_+k*dx}" y2="{y2_+k*dy}" stroke="#3b82c4" stroke-width="1.5"/>')
+
 # أسماء الغرف + المقاسات + المساحة
 for name, poly, col, kind in rooms:
     cx, cy = centroid(poly)
@@ -160,12 +179,15 @@ for name, poly, col, kind in rooms:
     if name == "غرفة نوم رئيسية": cy = 3.4
     if name == "مجلس (استقبال)": cy = 15.1
     if name == "درج": cy = 7.15
+    if name == "مصلى": cy = 5.75
+    if name == "حمام" and min(p[1] for p in poly) == 6.6: cy = 7.1
+    if name.startswith("منور"): cy -= 0.4
     xs = [p[0] for p in poly]; ys = [p[1] for p in poly]
     bw, bh = max(xs) - min(xs), max(ys) - min(ys)
     small = bw < 2.5 or bh < 2.5
     fs = 10 if small else 15
     out.append(f'<text x="{X(cx)}" y="{Y(cy)}" text-anchor="middle" font-size="{fs}" font-weight="bold" fill="#222">{name}</text>')
-    if kind in ("stair", "circ", "garden"):
+    if kind in ("stair", "circ"):
         continue
     dims = f"{bw:.2f}×{bh:.2f}" if len(poly) == 4 else ""
     sub = f"{dims} m" if dims else ""
@@ -186,14 +208,14 @@ def vdim(x_px, a, b, label, col="#c0392b"):
     out.append(f'<text x="{x_px-6}" y="{cy}" text-anchor="middle" font-size="12" fill="{col}" direction="ltr" transform="rotate(-90 {x_px-6} {cy})">{label}</text>')
 
 hdim(M - 50, 0, W, "12.60 m")
-for a, b in [(0, 4.6), (4.6, 6.2), (6.2, 10.2), (10.2, 12.6)]:
+for a, b in [(0, 4.4), (4.4, 6.6), (6.6, 10.2), (10.2, 12.6)]:
     hdim(M - 22, a, b, f"{b-a:.2f}", "#555")
 for a, b in [(0, 5.4), (5.4, 8.4), (8.4, 12.6)]:
     hdim(Y(L) + 30, a, b, f"{b-a:.2f}", "#555")
 vdim(M - 50, 0, L, "23.00 m")
 for a, b in [(0, 4.6), (4.6, 12.2), (12.2, 18.0), (18.0, 23.0)]:
     vdim(M - 22, a, b, f"{b-a:.2f}", "#555")
-for a, b in [(0, 4.6), (4.6, 6.6), (6.6, 9.0), (9.0, 15.0), (15.0, 23.0)]:
+for a, b in [(0, 4.6), (4.6, 7.8), (7.8, 15.0), (15.0, 23.0)]:
     vdim(X(W) + 34, a, b, f"{b-a:.2f}", "#555")
 
 # الشارع والشمال
@@ -207,7 +229,8 @@ here = os.path.dirname(os.path.abspath(__file__))
 open(os.path.join(here, "floor-plan.svg"), "w", encoding="utf-8").write(svg)
 
 # جدول المساحات
-built = 12.6 * 18.0 - 4.2 * 3.0
+wells = sum(area(p) for n, p, c, k in rooms if k == "well")
+built = 12.6 * 18.0 - 4.2 * 3.0 - wells
 rows = "".join(
     f"<tr><td>{n}</td><td dir='ltr'>{area(p):.2f}</td></tr>" for n, p, c, k in rooms)
 html = f"""<!doctype html>
@@ -224,12 +247,13 @@ td,th{{border:1px solid #ddd;padding:6px 10px;font-size:14px}} th{{background:#f
 tfoot td{{font-weight:bold;background:#f7f3ec}}
 </style></head><body>
 <h1>مخطط الدور الأرضي — قطعة 12.60 م × 23.00 م</h1>
-<p>مساحة الأرض: {W*L:.1f} م² · مسطح البناء (الدور الأرضي): {built:.1f} م² · الواجهة على الشارع من الأسفل</p>
+<p>مساحة الأرض: {W*L:.1f} م² · مسطح البناء (الدور الأرضي): {built:.1f} م² · المناور: {wells:.1f} م² · الواجهة على الشارع من الأسفل</p>
 <div class="wrap">{svg}
 <table><thead><tr><th>الفراغ</th><th>المساحة م²</th></tr></thead>
 <tbody>{rows}</tbody>
 <tfoot><tr><td>مساحة الأرض</td><td dir='ltr'>{W*L:.2f}</td></tr>
+<tr><td>المناور</td><td dir='ltr'>{wells:.2f}</td></tr>
 <tr><td>مسطح البناء</td><td dir='ltr'>{built:.2f}</td></tr></tfoot></table></div>
 </body></html>"""
 open(os.path.join(here, "index.html"), "w", encoding="utf-8").write(html)
-print("ok", W * L, built)
+print("ok", W * L, wells, built)

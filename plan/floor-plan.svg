@@ -1,17 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 684 1100" width="684" height="1100" font-family="Tahoma, Arial, sans-serif" direction="rtl">
 <rect width="684" height="1100" fill="#ffffff"/>
 <rect x="90" y="90" width="504.0" height="920.0" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="8 5"/>
-<polygon points="90.0,90.0 274.0,90.0 274.0,274.0 90.0,274.0" fill="#f3ead9"/>
-<polygon points="274.0,90.0 338.0,90.0 338.0,202.0 274.0,202.0" fill="#efe3cc"/>
-<polygon points="338.0,90.0 498.0,90.0 498.0,274.0 338.0,274.0" fill="#f3ead9"/>
+<polygon points="90.0,90.0 266.0,90.0 266.0,274.0 90.0,274.0" fill="#f3ead9"/>
+<polygon points="266.0,90.0 354.0,90.0 354.0,220.0 266.0,220.0" fill="#dfe7ec"/>
+<polygon points="354.0,90.0 498.0,90.0 498.0,274.0 354.0,274.0" fill="#f3ead9"/>
 <polygon points="498.0,90.0 594.0,90.0 594.0,186.0 498.0,186.0" fill="#ece4d6"/>
 <polygon points="498.0,186.0 594.0,186.0 594.0,274.0 498.0,274.0" fill="#dbe9f2"/>
-<polygon points="274.0,202.0 338.0,202.0 338.0,274.0 458.0,274.0 458.0,450.0 426.0,450.0 426.0,354.0 306.0,354.0 306.0,274.0 274.0,274.0" fill="#f7f5f0"/>
-<polygon points="458.0,274.0 594.0,274.0 594.0,354.0 458.0,354.0" fill="#dbe9f2"/>
-<polygon points="458.0,354.0 594.0,354.0 594.0,450.0 458.0,450.0" fill="#e9efe3"/>
+<polygon points="266.0,220.0 354.0,220.0 354.0,274.0 426.0,274.0 426.0,450.0 386.0,450.0 386.0,354.0 306.0,354.0 306.0,274.0 266.0,274.0" fill="#f7f5f0"/>
+<polygon points="426.0,274.0 506.0,274.0 506.0,354.0 426.0,354.0" fill="#efe3cc"/>
+<polygon points="426.0,354.0 506.0,354.0 506.0,450.0 426.0,450.0" fill="#dbe9f2"/>
+<polygon points="506.0,274.0 594.0,274.0 594.0,402.0 506.0,402.0" fill="#dfe7ec"/>
 <polygon points="90.0,274.0 306.0,274.0 306.0,450.0 426.0,450.0 426.0,538.0 306.0,538.0 306.0,578.0 90.0,578.0" fill="#f6efe2"/>
-<polygon points="306.0,354.0 426.0,354.0 426.0,450.0 306.0,450.0" fill="#e8dcc8"/>
-<polygon points="426.0,450.0 594.0,450.0 594.0,690.0 426.0,690.0" fill="#e9efe3"/>
+<polygon points="306.0,354.0 386.0,354.0 386.0,450.0 306.0,450.0" fill="#e8dcc8"/>
+<polygon points="426.0,450.0 506.0,450.0 506.0,402.0 594.0,402.0 594.0,690.0 426.0,690.0" fill="#e9efe3"/>
 <polygon points="90.0,578.0 306.0,578.0 306.0,810.0 90.0,810.0" fill="#f6efe2"/>
 <polygon points="306.0,538.0 426.0,538.0 426.0,746.0 366.0,746.0 366.0,810.0 306.0,810.0" fill="#f7f5f0"/>
 <polygon points="366.0,746.0 426.0,746.0 426.0,810.0 366.0,810.0" fill="#dbe9f2"/>
@@ -31,16 +32,8 @@
 <line x1="366.0" y1="404.0" x2="366.0" y2="450.0" stroke="#a88f6a" stroke-width="1"/>
 <line x1="376.0" y1="354.0" x2="376.0" y2="400.0" stroke="#a88f6a" stroke-width="1"/>
 <line x1="376.0" y1="404.0" x2="376.0" y2="450.0" stroke="#a88f6a" stroke-width="1"/>
-<line x1="386.0" y1="354.0" x2="386.0" y2="400.0" stroke="#a88f6a" stroke-width="1"/>
-<line x1="386.0" y1="404.0" x2="386.0" y2="450.0" stroke="#a88f6a" stroke-width="1"/>
-<line x1="396.0" y1="354.0" x2="396.0" y2="400.0" stroke="#a88f6a" stroke-width="1"/>
-<line x1="396.0" y1="404.0" x2="396.0" y2="450.0" stroke="#a88f6a" stroke-width="1"/>
-<line x1="406.0" y1="354.0" x2="406.0" y2="400.0" stroke="#a88f6a" stroke-width="1"/>
-<line x1="406.0" y1="404.0" x2="406.0" y2="450.0" stroke="#a88f6a" stroke-width="1"/>
-<line x1="416.0" y1="354.0" x2="416.0" y2="400.0" stroke="#a88f6a" stroke-width="1"/>
-<line x1="416.0" y1="404.0" x2="416.0" y2="450.0" stroke="#a88f6a" stroke-width="1"/>
-<line x1="306.0" y1="402.0" x2="414.0" y2="402.0" stroke="#7a6545" stroke-width="2"/>
-<path d="M406.0,378.0 L322.0,378.0 L322.0,426.0 L406.0,426.0" fill="none" stroke="#7a6545" stroke-width="1.2" marker-end="url(#arr)"/>
+<line x1="306.0" y1="402.0" x2="374.0" y2="402.0" stroke="#7a6545" stroke-width="2"/>
+<path d="M366.0,378.0 L322.0,378.0 L322.0,426.0 L366.0,426.0" fill="none" stroke="#7a6545" stroke-width="1.2" marker-end="url(#arr)"/>
 <rect x="130.0" y="866.0" width="80.0" height="80.0" fill="#7fb6dd" stroke="#4d8ab5" rx="4"/>
 <circle cx="170.0" cy="906.0" r="18.0" fill="none" stroke="#fff" stroke-width="2"/>
 <rect x="274.0" y="882.0" width="88.0" height="40.0" fill="#c9b79a" stroke="#8d7a5c" rx="3"/>
@@ -67,17 +60,22 @@
 <rect x="266.0" y="370.0" width="28.0" height="160.0" fill="#e2d6c4" stroke="#a8977d" rx="4"/>
 <rect x="162.0" y="650.0" width="96.0" height="88.0" fill="none" stroke="#c4b49a" stroke-dasharray="4 3"/>
 <rect x="154.0" y="378.0" width="88.0" height="104.0" fill="none" stroke="#c4b49a" stroke-dasharray="4 3"/>
-<polygon points="90.0,90.0 274.0,90.0 274.0,274.0 90.0,274.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
-<polygon points="274.0,90.0 338.0,90.0 338.0,202.0 274.0,202.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
-<polygon points="338.0,90.0 498.0,90.0 498.0,274.0 338.0,274.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
+<line x1="266.0" y1="90" x2="354.0" y2="220.0" stroke="#9fb3c0" stroke-width="1"/>
+<line x1="354.0" y1="90" x2="266.0" y2="220.0" stroke="#9fb3c0" stroke-width="1"/>
+<line x1="506.0" y1="274.0" x2="594.0" y2="402.0" stroke="#9fb3c0" stroke-width="1"/>
+<line x1="594.0" y1="274.0" x2="506.0" y2="402.0" stroke="#9fb3c0" stroke-width="1"/>
+<polygon points="90.0,90.0 266.0,90.0 266.0,274.0 90.0,274.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
+<polygon points="266.0,90.0 354.0,90.0 354.0,220.0 266.0,220.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
+<polygon points="354.0,90.0 498.0,90.0 498.0,274.0 354.0,274.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
 <polygon points="498.0,90.0 594.0,90.0 594.0,186.0 498.0,186.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
 <polygon points="498.0,186.0 594.0,186.0 594.0,274.0 498.0,274.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
-<polygon points="274.0,202.0 338.0,202.0 338.0,274.0 458.0,274.0 458.0,450.0 426.0,450.0 426.0,354.0 306.0,354.0 306.0,274.0 274.0,274.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
-<polygon points="458.0,274.0 594.0,274.0 594.0,354.0 458.0,354.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
-<polygon points="458.0,354.0 594.0,354.0 594.0,450.0 458.0,450.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
+<polygon points="266.0,220.0 354.0,220.0 354.0,274.0 426.0,274.0 426.0,450.0 386.0,450.0 386.0,354.0 306.0,354.0 306.0,274.0 266.0,274.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
+<polygon points="426.0,274.0 506.0,274.0 506.0,354.0 426.0,354.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
+<polygon points="426.0,354.0 506.0,354.0 506.0,450.0 426.0,450.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
+<polygon points="506.0,274.0 594.0,274.0 594.0,402.0 506.0,402.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
 <polygon points="90.0,274.0 306.0,274.0 306.0,450.0 426.0,450.0 426.0,538.0 306.0,538.0 306.0,578.0 90.0,578.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
-<polygon points="306.0,354.0 426.0,354.0 426.0,450.0 306.0,450.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
-<polygon points="426.0,450.0 594.0,450.0 594.0,690.0 426.0,690.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
+<polygon points="306.0,354.0 386.0,354.0 386.0,450.0 306.0,450.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
+<polygon points="426.0,450.0 506.0,450.0 506.0,402.0 594.0,402.0 594.0,690.0 426.0,690.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
 <polygon points="90.0,578.0 306.0,578.0 306.0,810.0 90.0,810.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
 <polygon points="306.0,538.0 426.0,538.0 426.0,746.0 366.0,746.0 366.0,810.0 306.0,810.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
 <polygon points="366.0,746.0 426.0,746.0 426.0,810.0 366.0,810.0" fill="none" stroke="#2b2b2b" stroke-width="6.0" stroke-linejoin="miter"/>
@@ -86,12 +84,9 @@
 <polyline points="594.0,690.0 594.0,1010.0" stroke="#555" stroke-width="5" fill="none"/>
 <polyline points="90.0,1010.0 298.0,1010.0" stroke="#555" stroke-width="5" fill="none"/>
 <polyline points="378.0,1010.0 426.0,1010.0" stroke="#555" stroke-width="5" fill="none"/>
-<line x1="274.0" y1="230.0" x2="274.0" y2="266.0" stroke="#fff" stroke-width="12.0"/>
-<line x1="274.0" y1="230.0" x2="237.99999999999997" y2="230.0" stroke="#333" stroke-width="1.5"/>
-<path d="M237.99999999999997,230.0 A36.000000000000014,36.000000000000014 0 0 0 274.0,266.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
-<line x1="290.0" y1="202.0" x2="322.0" y2="202.0" stroke="#fff" stroke-width="12.0"/>
-<line x1="290.0" y1="202.0" x2="290.0" y2="170.0" stroke="#333" stroke-width="1.5"/>
-<path d="M290.0,170.0 A31.999999999999993,31.999999999999993 0 0 1 322.0,202.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
+<line x1="266.0" y1="230.0" x2="266.0" y2="266.0" stroke="#fff" stroke-width="12.0"/>
+<line x1="266.0" y1="230.0" x2="230.0" y2="230.0" stroke="#333" stroke-width="1.5"/>
+<path d="M230.0,230.0 A36.000000000000014,36.000000000000014 0 0 0 266.0,266.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
 <line x1="370.0" y1="274.0" x2="406.0" y2="274.0" stroke="#fff" stroke-width="12.0"/>
 <line x1="370.0" y1="274.0" x2="370.0" y2="237.99999999999997" stroke="#333" stroke-width="1.5"/>
 <path d="M370.0,237.99999999999997 A36.000000000000014,36.000000000000014 0 0 1 406.0,274.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
@@ -101,15 +96,15 @@
 <line x1="522.0" y1="186.0" x2="550.0" y2="186.0" stroke="#fff" stroke-width="12.0"/>
 <line x1="522.0" y1="186.0" x2="522.0" y2="213.99999999999997" stroke="#333" stroke-width="1.5"/>
 <path d="M522.0,213.99999999999997 A27.99999999999997,27.99999999999997 0 0 0 550.0,186.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
-<line x1="458.0" y1="302.0" x2="458.0" y2="334.0" stroke="#fff" stroke-width="12.0"/>
-<line x1="458.0" y1="302.0" x2="490.0" y2="302.0" stroke="#333" stroke-width="1.5"/>
-<path d="M490.0,302.0 A31.999999999999993,31.999999999999993 0 0 1 458.0,334.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
-<line x1="458.0" y1="394.0" x2="458.0" y2="430.0" stroke="#fff" stroke-width="12.0"/>
-<line x1="458.0" y1="394.0" x2="494.0" y2="394.0" stroke="#333" stroke-width="1.5"/>
-<path d="M494.0,394.0 A36.000000000000014,36.000000000000014 0 0 1 458.0,430.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
-<line x1="426.0" y1="450.0" x2="458.0" y2="450.0" stroke="#fff" stroke-width="12.0"/>
-<line x1="426.0" y1="450.0" x2="426.0" y2="481.99999999999994" stroke="#333" stroke-width="1.5"/>
-<path d="M426.0,481.99999999999994 A31.999999999999957,31.999999999999957 0 0 0 458.0,450.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
+<line x1="426.0" y1="280.0" x2="426.0" y2="308.0" stroke="#fff" stroke-width="12.0"/>
+<line x1="426.0" y1="280.0" x2="454.00000000000006" y2="280.0" stroke="#333" stroke-width="1.5"/>
+<path d="M454.00000000000006,280.0 A28.000000000000007,28.000000000000007 0 0 1 426.0,308.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
+<line x1="426.0" y1="416.0" x2="426.0" y2="444.0" stroke="#fff" stroke-width="12.0"/>
+<line x1="426.0" y1="416.0" x2="454.0" y2="416.0" stroke="#333" stroke-width="1.5"/>
+<path d="M454.0,416.0 A27.99999999999997,27.99999999999997 0 0 1 426.0,444.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
+<line x1="426.0" y1="478.0" x2="426.0" y2="514.0" stroke="#fff" stroke-width="12.0"/>
+<line x1="426.0" y1="478.0" x2="462.0" y2="478.0" stroke="#333" stroke-width="1.5"/>
+<path d="M462.0,478.0 A36.000000000000014,36.000000000000014 0 0 1 426.0,514.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
 <line x1="338.0" y1="538.0" x2="386.0" y2="538.0" stroke="#fff" stroke-width="12.0"/>
 <line x1="338.0" y1="538.0" x2="338.0" y2="586.0" stroke="#333" stroke-width="1.5"/>
 <path d="M338.0,586.0 A48.00000000000001,48.00000000000001 0 0 0 386.0,538.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
@@ -128,17 +123,36 @@
 <line x1="514.0" y1="690.0" x2="550.0" y2="690.0" stroke="#fff" stroke-width="12.0"/>
 <line x1="514.0" y1="690.0" x2="514.0" y2="726.0" stroke="#333" stroke-width="1.5"/>
 <path d="M514.0,726.0 A36.000000000000014,36.000000000000014 0 0 0 550.0,690.0" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3 2"/>
-<line x1="274.0" y1="274.0" x2="306.0" y2="274.0" stroke="#f7f5f0" stroke-width="12.0"/>
-<line x1="310.0" y1="354.0" x2="422.0" y2="354.0" stroke="#f7f5f0" stroke-width="12.0"/>
-<text x="182.0" y="222.0" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">غرفة نوم 1</text>
-<text x="182.0" y="239.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr">4.60×4.60 m</text>
-<text x="182.0" y="254.0" text-anchor="middle" font-size="12" fill="#8a5a2b" direction="ltr">21.2 m²</text>
-<text x="306.0" y="146.0" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">مصلى</text>
-<text x="306.0" y="158.0" text-anchor="middle" font-size="7" fill="#555" direction="ltr">1.60×2.80 m</text>
-<text x="306.0" y="168.0" text-anchor="middle" font-size="7" fill="#8a5a2b" direction="ltr">4.5 m²</text>
-<text x="418.0" y="226.0" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">غرفة نوم رئيسية</text>
-<text x="418.0" y="243.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr">4.00×4.60 m</text>
-<text x="418.0" y="258.0" text-anchor="middle" font-size="12" fill="#8a5a2b" direction="ltr">18.4 m²</text>
+<line x1="268.0" y1="274.0" x2="304.0" y2="274.0" stroke="#f7f5f0" stroke-width="12.0"/>
+<line x1="308.0" y1="354.0" x2="384.0" y2="354.0" stroke="#f7f5f0" stroke-width="12.0"/>
+<line x1="388.0" y1="450.0" x2="424.0" y2="450.0" stroke="#f7f5f0" stroke-width="12.0"/>
+<line x1="266.0" y1="118.0" x2="266.0" y2="190.0" stroke="#fff" stroke-width="7.0"/>
+<line x1="263.5" y1="118.0" x2="263.5" y2="190.0" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="268.5" y1="118.0" x2="268.5" y2="190.0" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="354.0" y1="118.0" x2="354.0" y2="190.0" stroke="#fff" stroke-width="7.0"/>
+<line x1="351.5" y1="118.0" x2="351.5" y2="190.0" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="356.5" y1="118.0" x2="356.5" y2="190.0" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="526.0" y1="274.0" x2="574.0" y2="274.0" stroke="#fff" stroke-width="7.0"/>
+<line x1="526.0" y1="271.5" x2="574.0" y2="271.5" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="526.0" y1="276.5" x2="574.0" y2="276.5" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="506.0" y1="294.0" x2="506.0" y2="334.0" stroke="#fff" stroke-width="7.0"/>
+<line x1="503.5" y1="294.0" x2="503.5" y2="334.0" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="508.5" y1="294.0" x2="508.5" y2="334.0" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="506.0" y1="362.0" x2="506.0" y2="394.0" stroke="#fff" stroke-width="7.0"/>
+<line x1="503.5" y1="362.0" x2="503.5" y2="394.0" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="508.5" y1="362.0" x2="508.5" y2="394.0" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="526.0" y1="402.0" x2="578.0" y2="402.0" stroke="#fff" stroke-width="7.0"/>
+<line x1="526.0" y1="399.5" x2="578.0" y2="399.5" stroke="#3b82c4" stroke-width="1.5"/>
+<line x1="526.0" y1="404.5" x2="578.0" y2="404.5" stroke="#3b82c4" stroke-width="1.5"/>
+<text x="178.0" y="222.0" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">غرفة نوم 1</text>
+<text x="178.0" y="239.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr">4.40×4.60 m</text>
+<text x="178.0" y="254.0" text-anchor="middle" font-size="12" fill="#8a5a2b" direction="ltr">20.2 m²</text>
+<text x="310.0" y="139.0" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">منور 1</text>
+<text x="310.0" y="151.0" text-anchor="middle" font-size="7" fill="#555" direction="ltr">2.20×3.25 m</text>
+<text x="310.0" y="161.0" text-anchor="middle" font-size="7" fill="#8a5a2b" direction="ltr">7.1 m²</text>
+<text x="425.99999999999994" y="226.0" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">غرفة نوم رئيسية</text>
+<text x="425.99999999999994" y="243.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr">3.60×4.60 m</text>
+<text x="425.99999999999994" y="258.0" text-anchor="middle" font-size="12" fill="#8a5a2b" direction="ltr">16.6 m²</text>
 <text x="546.0" y="138.0" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">دريسنج</text>
 <text x="546.0" y="150.0" text-anchor="middle" font-size="7" fill="#555" direction="ltr">2.40×2.40 m</text>
 <text x="546.0" y="160.0" text-anchor="middle" font-size="7" fill="#8a5a2b" direction="ltr">5.8 m²</text>
@@ -146,19 +160,22 @@
 <text x="546.0" y="242.0" text-anchor="middle" font-size="7" fill="#555" direction="ltr">2.40×2.20 m</text>
 <text x="546.0" y="252.0" text-anchor="middle" font-size="7" fill="#8a5a2b" direction="ltr">5.3 m²</text>
 <text x="382.0" y="314.0" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">موزع</text>
-<text x="526.0" y="314.0" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">حمام</text>
-<text x="526.0" y="326.0" text-anchor="middle" font-size="7" fill="#555" direction="ltr">3.40×2.00 m</text>
-<text x="526.0" y="336.0" text-anchor="middle" font-size="7" fill="#8a5a2b" direction="ltr">6.8 m²</text>
-<text x="526.0" y="402.0" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">مطبخ تحضيري</text>
-<text x="526.0" y="414.0" text-anchor="middle" font-size="7" fill="#555" direction="ltr">3.40×2.40 m</text>
-<text x="526.0" y="424.0" text-anchor="middle" font-size="7" fill="#8a5a2b" direction="ltr">8.2 m²</text>
+<text x="466.0" y="320.0" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">مصلى</text>
+<text x="466.0" y="332.0" text-anchor="middle" font-size="7" fill="#555" direction="ltr">2.00×2.00 m</text>
+<text x="466.0" y="342.0" text-anchor="middle" font-size="7" fill="#8a5a2b" direction="ltr">4.0 m²</text>
+<text x="466.0" y="374.0" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">حمام</text>
+<text x="466.0" y="386.0" text-anchor="middle" font-size="7" fill="#555" direction="ltr">2.00×2.40 m</text>
+<text x="466.0" y="396.0" text-anchor="middle" font-size="7" fill="#8a5a2b" direction="ltr">4.8 m²</text>
+<text x="550.0" y="321.99999999999994" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">منور 2</text>
+<text x="550.0" y="333.99999999999994" text-anchor="middle" font-size="7" fill="#555" direction="ltr">2.20×3.20 m</text>
+<text x="550.0" y="343.99999999999994" text-anchor="middle" font-size="7" fill="#8a5a2b" direction="ltr">7.0 m²</text>
 <text x="206.0" y="502.0" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">صالة</text>
 <text x="206.0" y="519.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr"></text>
 <text x="206.0" y="534.0" text-anchor="middle" font-size="12" fill="#8a5a2b" direction="ltr">47.6 m²</text>
-<text x="366.0" y="376.0" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">درج</text>
+<text x="346.0" y="376.0" text-anchor="middle" font-size="10" font-weight="bold" fill="#222">درج</text>
 <text x="510.0" y="514.0" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">مطبخ وطعام</text>
-<text x="510.0" y="531.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr">4.20×6.00 m</text>
-<text x="510.0" y="546.0" text-anchor="middle" font-size="12" fill="#8a5a2b" direction="ltr">25.2 m²</text>
+<text x="510.0" y="531.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr"></text>
+<text x="510.0" y="546.0" text-anchor="middle" font-size="12" fill="#8a5a2b" direction="ltr">27.8 m²</text>
 <text x="198.0" y="694.0" text-anchor="middle" font-size="15" font-weight="bold" fill="#222">مجلس (استقبال)</text>
 <text x="198.0" y="711.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr">5.40×5.80 m</text>
 <text x="198.0" y="726.0" text-anchor="middle" font-size="12" fill="#8a5a2b" direction="ltr">31.3 m²</text>
@@ -175,12 +192,12 @@
 <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6545"/></marker><marker id="tk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M2,8 L8,2" stroke="#c0392b" stroke-width="1.5"/></marker></defs>
 <line x1="90" y1="40" x2="594.0" y2="40" stroke="#c0392b" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
 <text x="342.0" y="35" text-anchor="middle" font-size="12" fill="#c0392b" direction="ltr">12.60 m</text>
-<line x1="90" y1="68" x2="274.0" y2="68" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
-<text x="182.0" y="63" text-anchor="middle" font-size="12" fill="#555" direction="ltr">4.60</text>
-<line x1="274.0" y1="68" x2="338.0" y2="68" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
-<text x="306.0" y="63" text-anchor="middle" font-size="12" fill="#555" direction="ltr">1.60</text>
-<line x1="338.0" y1="68" x2="498.0" y2="68" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
-<text x="418.0" y="63" text-anchor="middle" font-size="12" fill="#555" direction="ltr">4.00</text>
+<line x1="90" y1="68" x2="266.0" y2="68" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
+<text x="178.0" y="63" text-anchor="middle" font-size="12" fill="#555" direction="ltr">4.40</text>
+<line x1="266.0" y1="68" x2="354.0" y2="68" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
+<text x="310.0" y="63" text-anchor="middle" font-size="12" fill="#555" direction="ltr">2.20</text>
+<line x1="354.0" y1="68" x2="498.0" y2="68" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
+<text x="426.0" y="63" text-anchor="middle" font-size="12" fill="#555" direction="ltr">3.60</text>
 <line x1="498.0" y1="68" x2="594.0" y2="68" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
 <text x="546.0" y="63" text-anchor="middle" font-size="12" fill="#555" direction="ltr">2.40</text>
 <line x1="90" y1="1040.0" x2="306.0" y2="1040.0" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
@@ -201,12 +218,10 @@
 <text x="62" y="910.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr" transform="rotate(-90 62 910.0)">5.00</text>
 <line x1="628.0" y1="90" x2="628.0" y2="274.0" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
 <text x="622.0" y="182.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr" transform="rotate(-90 622.0 182.0)">4.60</text>
-<line x1="628.0" y1="274.0" x2="628.0" y2="354.0" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
-<text x="622.0" y="314.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr" transform="rotate(-90 622.0 314.0)">2.00</text>
-<line x1="628.0" y1="354.0" x2="628.0" y2="450.0" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
-<text x="622.0" y="402.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr" transform="rotate(-90 622.0 402.0)">2.40</text>
-<line x1="628.0" y1="450.0" x2="628.0" y2="690.0" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
-<text x="622.0" y="570.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr" transform="rotate(-90 622.0 570.0)">6.00</text>
+<line x1="628.0" y1="274.0" x2="628.0" y2="402.0" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
+<text x="622.0" y="338.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr" transform="rotate(-90 622.0 338.0)">3.20</text>
+<line x1="628.0" y1="402.0" x2="628.0" y2="690.0" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
+<text x="622.0" y="546.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr" transform="rotate(-90 622.0 546.0)">7.20</text>
 <line x1="628.0" y1="690.0" x2="628.0" y2="1010.0" stroke="#555" stroke-width="1" marker-start="url(#tk)" marker-end="url(#tk)"/>
 <text x="622.0" y="850.0" text-anchor="middle" font-size="12" fill="#555" direction="ltr" transform="rotate(-90 622.0 850.0)">8.00</text>
 <text x="342.0" y="1086" text-anchor="middle" font-size="16" font-weight="bold" fill="#444">⟵ الشارع ⟶</text>
