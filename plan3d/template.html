@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>نموذج ثلاثي الأبعاد — الطابق الأرضي</title>
+<style>
+html,body{margin:0;height:100%;background:#f4f1ea;font-family:Tahoma,Arial,sans-serif;overflow:hidden}
+#ui{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.92);border:1px solid #ddd;border-radius:10px;padding:10px 12px;font-size:14px;color:#222}
+#ui button{margin-top:6px;padding:6px 10px;border:1px solid #bbb;border-radius:6px;background:#fff;cursor:pointer;font:inherit}
+#hint{position:absolute;bottom:10px;left:0;right:0;text-align:center;color:#666;font-size:13px}
+</style>
+<script type="importmap">/*__IMPORTMAP__*/{}</script>
+</head><body>
+<div id="ui">الطابق الأرضي 12.60 × 23.00 م<br>
+<button id="roofBtn">إخفاء / إظهار السقف</button></div>
+<div id="hint">اسحب بالماوس للدوران · عجلة الماوس للتقريب</div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/OrbitControls.js';
+const DATA = /*__DATA__*/null;
+const H = DATA.H;
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#f4f1ea');
+const camera = new THREE.PerspectiveCamera(38, innerWidth / innerHeight, 0.1, 500);
+// الشارع عند z = 23 (أمام القطعة)
+camera.position.set(-3, 25, 38);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(6.3, 1.5, 11.5);
+controls.enableDamping = true;
+controls.maxPolarAngle = Math.PI * 0.49;
+controls.update();
+
+scene.add(new THREE.HemisphereLight('#ffffff', '#b9b2a4', 1.1));
+const sun = new THREE.DirectionalLight('#ffffff', 1.6);
+sun.position.set(-20, 40, 25);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, { left: -20, right: 20, top: 25, bottom: -15, near: 1, far: 120 });
+scene.add(sun);
+
+const mat = c => new THREE.MeshStandardMaterial({ color: c, roughness: 0.85 });
+function box(w, h, d, x, y, z, color, cast = true) {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(color));
+  m.position.set(x, y, z);
+  m.castShadow = cast; m.receiveShadow = true;
+  scene.add(m); return m;
+}
+// الأرض (القطعة)
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(28, 28), mat('#dfe6d2'));
+ground.rotation.x = -Math.PI / 2; ground.position.set(6.3, -0.06, 11.5); ground.receiveShadow = true;
+scene.add(ground);
+// حدود القطعة (خط خفيف)
+const plotEdge = new THREE.LineSegments(
+  new THREE.EdgesGeometry(new THREE.BoxGeometry(12.6, 0.02, 23)),
+  new THREE.LineBasicMaterial({ color: '#c0392b' }));
+plotEdge.position.set(6.3, 0.01, 11.5); scene.add(plotEdge);
+
+// الأرضيات والسقف
+const roof = new THREE.Group(); scene.add(roof);
+for (const r of DATA.rooms) {
+  const w = r.x1 - r.x0, d = r.y1 - r.y0, cx = (r.x0 + r.x1) / 2, cz = (r.y0 + r.y1) / 2;
+  box(w, 0.12, d, cx, 0.0, cz, r.color, false);
+  if (r.kind === 'room') {
+    const rf = box(w, 0.15, d, cx, H + 0.075, cz, '#c9c3b8', true);
+    roof.add(rf);
+  }
+}
+// الجدران
+for (const w of DATA.walls) {
+  const ww = w.x1 - w.x0, dd = w.y1 - w.y0;
+  box(ww, H, dd, (w.x0 + w.x1) / 2, H / 2, (w.y0 + w.y1) / 2, '#ebe6dc');
+}
+// أشجار صغيرة في المنور والحديقة الداخلية والحديقة الأمامية
+const leafMat = mat('#6fa35a'), trunkMat = mat('#7a5c3e');
+function tree(x, z, s = 1) {
+  const t = new THREE.Mesh(new THREE.CylinderGeometry(0.06 * s, 0.08 * s, 0.6 * s, 8), trunkMat);
+  t.position.set(x, 0.3 * s, z); t.castShadow = true; scene.add(t);
+  const l = new THREE.Mesh(new THREE.SphereGeometry(0.38 * s, 16, 12), leafMat);
+  l.position.set(x, 0.85 * s, z); l.castShadow = true; scene.add(l);
+}
+tree(6.6, 2.8, 0.8); tree(7.0, 3.2, 0.7);
+tree(7.1, 8.0); tree(9.0, 8.0); tree(7.1, 9.6); tree(9.0, 9.6);
+tree(1.0, 19.0, 1.2); tree(7.2, 19.4, 1.1); tree(3.2, 22.0, 1.1); tree(7.2, 22.0, 1.1);
+// نافورة/مقاعد بسيطة في الحديقة الأمامية
+box(1.6, 0.25, 1.2, 3.0, 0.12, 19.0, '#c9b79a');
+// سيارة في الكراج
+const car = new THREE.Group();
+const body = new THREE.Mesh(new THREE.BoxGeometry(1.9, 0.8, 4.6), mat('#cfd4da'));
+body.position.set(0, 0.55, 0); body.castShadow = true; car.add(body);
+const cabin = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.6, 2.4), mat('#8f9aa6'));
+cabin.position.set(0, 1.1, -0.2); cabin.castShadow = true; car.add(cabin);
+car.position.set(10.4, 0, 19.3); scene.add(car);
+// مطبخ: كاونتر بسيط
+box(0.6, 0.9, 3.8, 10.45, 0.45, 13.0, '#d0d0d0');
+box(3.2, 0.9, 0.6, 8.2, 0.45, 15.0, '#d0d0d0');
+
+const btn = document.getElementById('roofBtn');
+btn.onclick = () => { roof.visible = !roof.visible; };
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+function loop() { controls.update(); renderer.render(scene, camera); requestAnimationFrame(loop); }
+loop();
+window.__ready = true;
+</script>
+</body></html>
