@@ -1,10 +1,10 @@
-"""نموذج ثلاثي الأبعاد للطابق الأرضي (قطعة 12.60 × 23.00 م) من المخطط المعدّل (الصورة 5).
-الإحداثيات بالمتر، الجدران سمك 0.20 م وارتفاع 3.00 م. ليست فيه فتحات أبواب/شبابيك."""
+"""نموذج ثلاثي الأبعاد للطابق الأرضي (قطعة 12.60 × 23.00 م) — بدون سقف.
+الإحداثيات بالمتر: x أفقي، y في المخطط = z في المشهد، الارتفاع h.
+الجدران سمك 0.20 م وارتفاع 3.00 م، مع فتحات أبواب (ارتفاع 2.10) وشبابيك (من 1.00 إلى 2.20)."""
 import json, os
 
 T, H = 0.20, 3.0
-# (الاسم, x0, y0, x1, y1, اللون, النوع)  النوع: room | well | out
-rooms = [
+ROOMS = [  # (الاسم, x0, y0, x1, y1, اللون, النوع)  room | well (مكشوف) | out (خارجي)
     ("غرفة نوم 1", 0.0, 0.0, 4.9, 4.5, "#f3ead9", "room"),
     ("ممر", 4.9, 0.0, 5.9, 4.5, "#f7f5f0", "room"),
     ("حمام", 5.9, 0.0, 7.3, 2.0, "#dbe9f2", "room"),
@@ -24,40 +24,119 @@ rooms = [
     ("مطبخ حار", 10.8, 10.2, 12.6, 15.4, "#e3ecd9", "room"),
     ("استقبال", 0.0, 11.3, 4.5, 17.1, "#f6efe2", "room"),
     ("مدخل", 4.5, 11.3, 6.5, 17.1, "#f7f5f0", "room"),
-    ("حديقة أمامية", 0.0, 17.1, 8.2, 23.0, "#d6e8c8", "out"),
-    ("كراج", 8.2, 15.4, 12.6, 23.0, "#e4e4e4", "out"),
     ("حمام خارجي", 0.0, 21.5, 1.5, 23.0, "#dbe9f2", "room"),
 ]
+# الفتحات: (اتجاه 'h' جدار أفقي بمحور y | 'v' جدار رأسي بمحور x, المحور, من, إلى, أسفل الفتحة, أعلى الفتحة, نوع)
+OPEN = [
+    ("h", 17.1, 4.9, 6.1, 0.0, 2.2, "door"),       # المدخل الرئيسي
+    ("h", 0.0, 1.0, 3.0, 1.0, 2.2, "win"),         # شباك غرفة نوم 1 (أعلى)
+    ("v", 0.0, 1.0, 3.0, 1.0, 2.2, "win"),         # شباك غرفة نوم 1 (يسار)
+    ("h", 0.0, 6.2, 7.0, 1.0, 2.2, "win"),         # شباك الحمام
+    ("h", 0.0, 10.0, 11.6, 1.0, 2.2, "win"),       # شباك غرفة الملابس
+    ("v", 12.6, 2.5, 4.5, 1.0, 2.2, "win"),        # شباك غرفة نوم 2
+    ("v", 12.6, 11.6, 14.0, 1.0, 2.2, "win"),      # شباك المطبخ الحار
+    ("h", 15.4, 7.0, 8.2, 1.0, 2.2, "win"),        # شباك المطبخ البارد (على الحديقة)
+    ("v", 0.0, 8.0, 10.0, 1.0, 2.2, "win"),        # شباك الصالة
+    ("v", 4.9, 3.2, 4.0, 0.0, 2.1, "door"),        # غرفة نوم 1 ← الممر
+    ("v", 5.9, 0.5, 1.4, 0.0, 2.1, "door"),        # الحمام ← الممر
+    ("h", 1.7, 8.6, 9.6, 0.0, 2.1, "door"),        # غرفة الملابس ← غرفة نوم 2
+    ("h", 5.9, 8.4, 9.6, 0.0, 2.1, "door"),        # غرفة نوم 2 ← الموزع
+    ("v", 4.5, 5.0, 6.2, 0.0, 2.4, "arch"),        # الدرج ← الموزع
+    ("h", 7.1, 1.5, 2.7, 0.0, 2.1, "door"),        # الدرج ← الصالة
+    ("h", 7.1, 10.0, 10.8, 0.0, 2.1, "door"),      # اللوندري ← الموزع
+    ("v", 11.1, 7.6, 8.4, 0.0, 2.1, "door"),       # الـWC ← اللوندري
+    ("h", 8.5, 9.9, 10.7, 0.0, 2.1, "door"),       # الحمام ← اللوندري
+    ("v", 6.5, 8.2, 9.2, 0.0, 2.2, "arch"),        # الصالة ← الحديقة الداخلية
+    ("h", 11.3, 4.8, 6.2, 0.0, 2.4, "arch"),       # الصالة ← المدخل
+    ("v", 6.5, 12.0, 13.2, 0.0, 2.1, "door"),      # المدخل ← المطبخ البارد
+    ("v", 4.5, 14.8, 16.0, 0.0, 2.1, "door"),      # المدخل ← الاستقبال
+    ("v", 10.8, 11.6, 12.6, 0.0, 2.1, "door"),     # المطبخ البارد ← الحار
+    ("h", 15.4, 11.0, 11.8, 0.0, 2.2, "door"),     # الحار ← الكراج
+    ("v", 1.5, 21.8, 22.5, 0.0, 2.1, "door"),      # الحمام الخارجي
+]
 
-walls = set()
-def add_wall(x0, y0, x1, y1):
-    walls.add((round(x0, 3), round(y0, 3), round(x1, 3), round(y1, 3)))
-for name, x0, y0, x1, y1, col, kind in rooms:
+solids = []
+def box(x0, x1, z0, z1, h0, h1, color, glass=False):
+    solids.append(dict(x0=round(x0, 3), x1=round(x1, 3), z0=round(z0, 3), z1=round(z1, 3),
+                       h0=round(h0, 3), h1=round(h1, 3), c=color, g=glass))
+
+# 1) خطوط الجدران الموحّدة (تُدمج المقاطع المتراكبة على المحور نفسه)
+lines = {}
+def add_line(o, c, a, b):
+    lines.setdefault((o, round(c, 3)), []).append((a, b))
+for name, x0, y0, x1, y1, col, kind in ROOMS:
     if kind == "out":
         continue
-    # جدران المحيط (على محاور الحدود، سمك T)
-    add_wall(x0 - T / 2, y0 - T / 2, x1 + T / 2, y0 + T / 2)
-    add_wall(x0 - T / 2, y1 - T / 2, x1 + T / 2, y1 + T / 2)
-    add_wall(x0 - T / 2, y0 + T / 2, x0 + T / 2, y1 - T / 2)
-    add_wall(x1 - T / 2, y0 + T / 2, x1 + T / 2, y1 - T / 2)
-# السور الخارجي للحديقة والكراج (جدار قصير)
-for seg in [(0, 17.1, 0.2, 23.0), (12.4, 15.4, 12.6, 23.0)]:
-    add_wall(*seg)
+    add_line("h", y0, x0 - T / 2, x1 + T / 2); add_line("h", y1, x0 - T / 2, x1 + T / 2)
+    add_line("v", x0, y0 - T / 2, y1 + T / 2); add_line("v", x1, y0 - T / 2, y1 + T / 2)
+for (o, c), ivs in lines.items():
+    ivs.sort(); merged = []
+    for a, b in ivs:
+        if merged and a <= merged[-1][1] + 1e-6:
+            merged[-1][1] = max(merged[-1][1], b)
+        else:
+            merged.append([a, b])
+    for a, b in merged:
+        cuts = sorted([op for op in OPEN if op[0] == o and abs(op[1] - c) < 1e-3 and op[2] >= a - 1e-6 and op[3] <= b + 1e-6],
+                      key=lambda op: op[2])
+        cur = a
+        def piece(s, e, h0, h1):
+            if e - s < 1e-6 or h1 - h0 < 1e-6: return
+            if o == "h":
+                box(s, e, c - T / 2, c + T / 2, h0, h1, "#ebe6dc")
+            else:
+                box(c - T / 2, c + T / 2, s, e, h0, h1, "#ebe6dc")
+        for op in cuts:
+            _, _, s, e, sill, top, kind = op
+            piece(cur, s, 0, H)                 # جدار قبل الفتحة
+            if sill > 0: piece(s, e, 0, sill)  # أسفل الشباك
+            piece(s, e, top, H)                 # العتب فوق الفتحة
+            if kind == "win":
+                if o == "h": box(s, e, c - 0.02, c + 0.02, sill, top, "#9ccbe8", glass=True)
+                else: box(c - 0.02, c + 0.02, s, e, sill, top, "#9ccbe8", glass=True)
+            cur = e
+        piece(cur, b, 0, H)
 
-data = {
-    "H": H,
-    "rooms": [dict(name=n, x0=a, y0=b, x1=c, y1=d, color=col, kind=k) for n, a, b, c, d, col, k in rooms],
-    "walls": [dict(x0=a, y0=b, x1=c, y1=d) for a, b, c, d in sorted(walls)],
-}
+# 2) أرضيات الغرف
+for name, x0, y0, x1, y1, col, kind in ROOMS:
+    box(x0, x1, y0, y1, 0, 0.12, col)
+
+# 3) أسوار الكراج والحديقة (ارتفاع 1.20 م)
+for o, c, a, b in [("v", 0.0, 17.1, 23.0), ("h", 23.0, 0.0, 4.6), ("h", 23.0, 6.6, 8.2), ("v", 12.6, 15.4, 23.0)]:
+    if o == "h": box(a, b, c - T / 2, c + T / 2, 0, 1.2, "#7a7468")
+    else: box(c - T / 2, c + T / 2, a, b, 0, 1.2, "#7a7468")
+
+# 4) درج (يصعد من الدرج إلى الطابق الأول)
+for i in range(10):
+    z0 = 4.6 + i * 0.24
+    box(0.2, 3.4, z0, z0 + 0.24, 0, (i + 1) * 0.3, "#b89b72")
+
+# 5) أثاث
+FUR = "#bfae94"
+box(0.5, 2.6, 0.8, 2.6, 0.0, 0.45, "#d9cfc0"); box(0.5, 2.6, 0.8, 2.6, 0.45, 0.7, "#ffffff")   # سرير غرفة 1
+box(10.2, 12.3, 2.8, 4.6, 0.0, 0.45, "#d9cfc0"); box(10.2, 12.3, 2.8, 4.6, 0.45, 0.7, "#ffffff")  # سرير غرفة 2
+box(9.5, 12.4, 0.3, 0.6, 0.0, 2.2, "#d8c7a8")                                      # دولاب الملابس
+box(0.4, 1.2, 7.5, 10.9, 0.0, 0.8, "#c9b79a"); box(1.2, 3.9, 7.4, 8.2, 0.0, 0.8, "#c9b79a")  # صالة: كنب
+box(2.0, 3.3, 8.8, 9.9, 0.0, 0.4, "#8b6f4e")                                       # طاولة قهوة
+box(5.0, 6.0, 8.6, 10.2, 0.0, 0.75, "#8b6f4e")                                     # طاولة طعام
+box(0.4, 1.2, 11.7, 16.6, 0.0, 0.8, "#c9b79a"); box(1.2, 3.4, 11.7, 12.5, 0.0, 0.8, "#c9b79a")  # استقبال: كنب U
+box(2.0, 3.0, 13.6, 14.8, 0.0, 0.4, "#8b6f4e")                                     # طاولة استقبال
+box(6.7, 10.5, 15.0, 15.4, 0.0, 0.9, "#d0d0d0"); box(6.6, 7.2, 11.4, 15.0, 0.0, 0.9, "#d0d0d0")  # كاونتر المطبخ البارد
+box(10.9, 11.5, 10.4, 15.2, 0.0, 0.9, "#d0d0d0")                                   # كاونتر المطبخ الحار
+box(9.7, 10.5, 7.4, 8.1, 0.0, 0.85, "#eef2f5")                                     # غسالة
+box(11.6, 12.4, 7.3, 7.9, 0.0, 0.4, "#ffffff")                                     # مرحاض WC
+box(11.2, 12.5, 9.0, 9.9, 0.0, 0.5, "#ffffff")                                     # حوض/جاكوزي الحمام
+box(6.6, 7.2, 0.3, 0.8, 0.0, 0.4, "#ffffff")                                       # مرحاض الحمام العلوي
+box(5.95, 6.5, 1.0, 1.8, 0.0, 0.5, "#ffffff")                                      # مغسلة/حوض
+
+data = {"H": H, "solids": solids}
 here = os.path.dirname(os.path.abspath(__file__))
 tpl = open(os.path.join(here, "template.html"), encoding="utf-8").read()
 import base64
 def durl(fn):
     raw = open(os.path.join(here, "vendor", fn), "rb").read()
     return "data:text/javascript;base64," + base64.b64encode(raw).decode("ascii")
-imap = {"imports": {"three": durl("three.module.js"),
-                    "three/addons/OrbitControls.js": durl("OrbitControls.js")}}
-html = tpl.replace("/*__IMPORTMAP__*/{}", json.dumps(imap))
-html = html.replace("/*__DATA__*/null", json.dumps(data, ensure_ascii=False))
+imap = {"imports": {"three": durl("three.module.js"), "three/addons/OrbitControls.js": durl("OrbitControls.js")}}
+html = tpl.replace("/*__IMPORTMAP__*/{}", json.dumps(imap)).replace("/*__DATA__*/null", json.dumps(data, ensure_ascii=False))
 open(os.path.join(here, "floor-plan-3d.html"), "w", encoding="utf-8").write(html)
-print("walls", len(walls), "rooms", len(rooms))
+print("solids", len(solids), "glass", sum(1 for s in solids if s["g"]))
